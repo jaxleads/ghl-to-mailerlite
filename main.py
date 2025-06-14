@@ -46,3 +46,12 @@ def ghl_webhook():
 # For local testing (optional)
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=3000)
+
+@app.route("/ghl-webhook", methods=["POST"])
+def ghl_webhook():
+    data = request.get_json()
+    print("Webhook received data:", data)  # 👈 log incoming payload
+
+    email = data.get("email")
+    name = data.get("name", "No Name")
+
